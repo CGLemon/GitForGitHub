@@ -13,11 +13,11 @@
 
     $ git config -l
 
-現在要修改 GitHub 的 Repository 前，要先使用 Token，因為 Token 是必須的，開始前請先產生新的 Token，具體方法請看[這裡](https://dotblogs.com.tw/CYLcode/2020/06/15/102853)。由於 Token 過一段時間會失效，每隔一段時間就需要產生新的 Token，MacOS 預設會紀錄 Token 密碼而且不會自動更新，每次更新 Token 後都需要手動更新，具體方法請看[這裡](https://blog.myctw.cc/post/bd72.html)。
+現在修改 GitHub 的 Repository 前，要先使用 Token，因為 Token 是必須的，開始前請先產生新的 Token，具體方法請看[這裡](https://dotblogs.com.tw/CYLcode/2020/06/15/102853)。由於 Token 過一段時間會失效，每隔一段時間就需要產生新的 Token，MacOS 預設會紀錄 Token 密碼而且不會自動更新，每次更新 Token 後都需要手動更新，具體方法請看[這裡](https://blog.myctw.cc/post/bd72.html)。
 
 ## 用 GitHub 上添加 Repository
 
-在 GitHub 上添加專案並在本地（自己的電腦上）端建立相應的 git 專案有兩種方法，第一種作法是直接從 GitHub 遠端 clone 到本地，git 可以通過 Repository 在 GitHub上相應的網址下載之，例如此文檔的網址為 https://github.com/CGLemon/GitForGitHub，輸入下列指令即可下載
+在 GitHub 上添加專案並在本地（自己的電腦上）端建立相應的 git 專案有兩種方法，第一種作法是直接從 GitHub 遠端 clone 到本地，git 可以通過 Repository 在 GitHub上相應的網址下載之，例如此文檔的網址為 ```https://github.com/CGLemon/GitForGitHub``` ，輸入下列指令即可下載
 
     $ git clone https://github.com/CGLemon/GitForGitHub
 
@@ -33,7 +33,7 @@
 
     $ git add README.md
 
-如果你不確定你修改哪些文件，數入 status 可以查看
+如果你不確定你修改哪些文件， 輸入 status 可以查看
 
     $ git status
 
@@ -45,19 +45,19 @@
 
     $ git push
 
-之後會要求你輸入你的帳號和 Token ，完成後就會看到上傳畫面。
+之後會要求你輸入你的帳號和 Token ，完成後就會看到上傳畫面。你可以到 GitHub 上看到推入的修改。
 
 ## 拉入（pull）同步
 
-如果你有多台電腦 clone 同一份 Repository，當你在 A 電腦上完成修改並 push ，轉到 B 電腦上時工作時就要先同步，你應該不會希望每次同步都要重新 clone 一遍，你可以用 pull 將遠端的最新進度同步到本地端上，輸入
+如果你有多台電腦 clone 同一份 Repository，當你在 A 電腦上完成修改並 push ，轉到 B 電腦上時工作前就要先同步，但你應該不會希望每次同步都要重新刪除後再 clone 一遍，這時你可以用 pull 功能將遠端的最新進度同步到本地端上，輸入
 
     $ git pull
 
-就可以保證 B 和 A 電腦 Repository 狀態適一致的
+如此可以保證 B 和 A 電腦 Repository 狀態是一致的
 
 ## 用分之（branch）保護你的程式
 
-如果你想對程式做一些實驗性質的改變，你應該不會希望再沒有備份的情況下修改，不然有後修改失敗記難以回覆了，branch 是一個特殊備份方式，可以幫助你回覆你的修改。這裡我們講一下 git 的運作方式，git 的文件是由多個 commit 組合而成，每一個 commit 我們可以看成一個節點，通過節點的前進或倒退到任何時間的狀態，而每串由尾巴（第一個 commit） 到頭 （最新的 commit） 稱為一個 branch，而  branch 的好處在於，多個 branch 可以同時分享同一棵數而且彼此修改獨立，必要時 branch 可以合併。我們以之前的 Repository 為例，首先我們先看當前 branch 的所有 commits ，輸入 log 查看
+如果你想對程式做一些實驗性質的改變，你應該不會希望在沒有備份的情況下修改，不然有些修改失敗後就難以回復了，branch 是一個特殊備份方式，可以幫助你回復你的修改。這裡我們講一下 git 的運作方式，git 的文件是由多個 commit 組合而成，每一個 commit 我們可以看成一個節點，通過節點的前進或倒退到可以到任何時間的狀態，而每串由尾巴（第一個 commit） 到頭 （最新的 commit） 的節點稱為一個 branch，而  branch 的好處在於，多個 branch 可以同時分享同一棵樹而且彼此修改獨立，必要時 branch 可以相互合併。我們以之前的 Repository 為例，首先我們先看當前 branch 的所有 commits ，輸入 log 查看
 
     $ git log
 
@@ -78,19 +78,19 @@
     $ git add test.txt
     $ git commit -m "add test.txt"
 
-我們可以切回原本 branch ，假設你的原本 branch 是 main（或 master）
+我們可以切回原本的 branch ，假設你的原本的 branch 是 main（或 master）
 
     $ git checkout main
 
-你可以看到你的修該回復了，當然修改並沒有消逝，你可以回到 test-branch 繼續修改。你可以將你添加的 test-branch 推入 GitHub 上，輸入以下指令推入
+你可以看到你的修該回復了，test.txt 這個檔案消失了，當然並沒有真的消失，修改的部份保存在 test-branch 裡。你可以將你添加的 test-branch 推入 GitHub 上，輸入以下指令推入
 
     $ git push origin test-branch
 
-到 GitHub 上可以看到你推入的新 branch 。這裡先提一下 origin 是 GitHub 的遠端，和前面 ```$ git push``` 有關，只不過它是省略寫法，功能是推入主 branch，比較完整的寫法是下方，下方寫法和省略寫法功能一致。
+完成推入後，到 GitHub 上可以看到你推入的新 branch 。這裡先提一下 origin 是 GitHub 預設的遠端，前面 ```$ git push``` 和遠端有關聯，只不過它是省略寫法，它功能是推入主 branch，下方是比較完整的寫法，下方寫法和省略寫法功能一致。
 
     $ git branch origin main
 
-如果你想要修改完後，確認功能無誤，可以將 test-branch 和主 branch 合併，收先回到主 branch 再輸入指令 merge，主 branch 就會合併其它 branch
+如果你修改完後，確認功能無誤，可以將 test-branch 和主 branch 合併，首先回到主 branch ，再輸入指令 merge，主 branch 就會合併指定的 branch
 
     $ git checkout main
     $ git merge test-branch
