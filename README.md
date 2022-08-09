@@ -109,6 +109,24 @@
 
 整個過程中，都必須確保主 branch 沒有被修改到，這是因為爾後原作者更新後，我們可以直接 pull 更新而不影響。
 
+## 添加遠端
+
+如果你一份代碼同時有兩個遠端要推入，比如 GitHub 和 Gitee，那要怎做呢？我們可以透過指定遠端的方式，決定要推入那個 Repository。因為要申請 Gitee 帳號會比較麻煩，我們直接在 GitHub 添加新的 Repository 當作第二個遠端，一樣先創建新的 Repository 名叫 MyRemoteRepository ，但不需要點選 ```Add a README file``` 這一項。現在的目標是，將前面創建的 MyRepository 推入 MyRemoteRepository，首先 clone 先前的 MyRepository
+
+    $ git clone https://github.com/User/MyRepository
+
+推入前我們先看一下 MyRepository 目前有哪些遠端。
+
+    $ git remote
+
+沒有意外的話，可以看到僅有 origin 這個遠端，origin 是 GitHub 預設的遠端名稱。接下來為 MyRemoteRepository 添加新的遠端，添加的方式很間單，每個 GitHub 的 Repository 都會有一個 xxx.git 的檔案，我們添加的目標就是它，輸入下列指令，添加新的遠端名為 newremote
+
+    $ git remote add newremote https://github.com/User/MyRemoteRepository.git
+
+接者就可以直接推入了，輸入下列指令後，可以看到在 GitHub 的 MyRemoteRepository 裡，被推入和 MyRepository 一模一樣的 commits。
+
+    $ git push newremote main
+
 <br>
 <br>
 （努力施工中...）
